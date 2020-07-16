@@ -1,2 +1,2 @@
 # tech-quiz
-## Develop using Django
+## Develop using Django with mysql database
