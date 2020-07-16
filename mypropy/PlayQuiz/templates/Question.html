@@ -1,0 +1,33 @@
+{% extends "quizPlay.html" %}
+{% block content %}
+<script type="text/javascript">
+  document.addEventListener("contextmenu",function(e){e.preventDefault();},false)
+</script>
+<div class="alert alert-success" role="alert">
+ all quiz
+</div>
+<div class="container text-left"> 
+	<h1>Please Select answer</h1>
+	<form action="{% url 'play:validateAnswer'%}" method="POST" name="abc">
+    <div class="container"><input type="checkbox" name="" onclick="setTimeout(function(){document.abc.submit()},3000);">Enable Limeted Time</div>
+		{% csrf_token %}
+    <div class="card container" style="-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-o-user-select:none;user-select:none">
+  	{%for u in quest %}
+      unselectable
+	   <div class="card card-header " ="on">
+       <h1>{{u.Question_Question}}</h1>
+       </div>
+       <div class="card card-body">
+       	<input type="radio" style="width:30px;height:30px;" name="{{u.id}}" checked="true" value="{{u.Question_Option_1}}">{{u.Question_Option_1}}
+       	<input type="radio" style="width:30px;height:30px;" name="{{u.id}}" value="{{u.Question_Option_2}}">{{u.Question_Option_2}}
+       	<input type="radio" style="width:30px;height:30px;" name="{{u.id}}" value="{{u.Question_Option_3}}">{{u.Question_Option_3}}
+       	<input type="radio" style="width:30px;height:30px;" name="{{u.id}}" value="{{u.Question_Option_4}}">{{u.Question_Option_4}}
+	   </div>
+	   <br>
+	{%endfor%}
+<input type="hidden" name="qid" value="{{qid}}">
+<input type="submit" name="submit" value="Submit" class="btn btn-info">
+</div>
+</form>
+</div>
+{% endblock %}
